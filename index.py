@@ -42,9 +42,9 @@ with open(model_file_path, 'rb') as file:
     loaded_model = pickle.load(file)
 
 # id to data maping
-idMap={
-1:100,2:101,3:103,4:104,5:105,6:106,7:107,8:108,9:109,10:111,11:112,12:113, 13:114, 14:115, 15:116, 16:117, 17:118, 18:119, 19:121, 20: 122, 21:123, 22:124, 23:200, 24:201, 25:202, 26:203, 27:205, 28:207, 29:208, 30:209, 31:210, 32:212, 33:213, 34:214 , 35:215, 36:217, 37:219, 38:220, 39:221, 40:223, 41:228, 42:230, 43:231 ,44:232, 45:233, 46:234, 47:102,
-}
+idMap={1:101, 2:106, 3: 108, 4:109, 5:112, 6:114, 7:115, 8:116, 9:118, 10:119, 11:122, 12:124,13: 201, 14:203, 15:205, 16:207,17: 208, 18:209,
+ 19:215, 20:220, 21:223, 22:230, 23:100, 24:103, 25:105, 26:111, 27:113, 28:117, 29:121, 30:123, 31:200, 32:202, 33:210, 34:212,35: 213, 36:214,
+ 37:219, 38:221,39: 222, 40:228, 41:231, 42:232, 43:233, 44:234}
 #MAKE PREDICTION
 def DetectA():
     selected_id = int(id_combobox.get())
@@ -202,7 +202,7 @@ title_label = tk.Label(frame, text="Select an ID:",font=("Arial", 14))
 title_label.pack(side="left",padx=5)
 
 # Create a ComboBox to select the ID
-id_combobox = ttk.Combobox(frame,font=("Arial", 14), values=list(range(1, 48)))
+id_combobox = ttk.Combobox(frame,font=("Arial", 14), values=list(range(1, 44)))
 id_combobox.pack(side="left",padx=10)
 
 # Create a button to display the ECG signal
