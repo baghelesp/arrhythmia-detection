@@ -55,23 +55,33 @@ def DetectA():
     X_data_scaled = min_max_scaler.transform(x_data)
     # print(x_data)
     prediction = loaded_model.predict(X_data_scaled)
-    countA=0
-    countB=0
-
+    cntA=0
+    cntN=0
+    cntSVEB=0
+    cntVEB=0
+    cntF=0
+    cntQ=0
+    print(prediction)
     for e in prediction:
-        if e=='arrhythmia':
-            countA=countA+1
-        elif e=='N':
-            countB=countB+1
-    print("Count A:",countA," count B:",countB)
-    text="{Total Instance : "+str(countA+countB)+" } "+" {Normal Instance :"+str(countB)+" } {Arrhythmia Instance : "+str(countA)+" }"
+        if e=='N':
+            cntN=cntN+1
+        elif e=='VEB':
+            cntVEB=cntVEB+1
+        elif e=='SVEB':
+            cntSVEB=cntSVEB+1
+        elif e=='F':
+            cntF=cntF+1
+        elif e=='Q':
+            cntQ=cntQ+1
+    print("Count A:",cntA," count B:",cntN,"cntVEB :",cntVEB,", cntSVEB",cntSVEB," cntF:",cntF,", cntQ:",cntQ)
+    text="{ Total Instance : " + str(len(prediction)) + " } " + " { Normal Instance :" + str(cntN) + " } { Arrhythmia Instance : " + str(cntVEB+cntSVEB+cntF+cntQ)+" => | VEB : "+str(cntVEB)+" | SVEB : "+str(cntSVEB)+" | F : "+str(cntF)+" | Q : "+str(cntQ)+"| }"
     label.config(text=text,font=("Arial", 16))
     print(prediction)
     for ax in axes:
         ax.clear()   
     # Plot each patient's signal
     axes[0].set_title("Pateint Id : "+str(selected_id) +  " Arrhythmia Detection")
-    bars=axes[0].bar(['Normal','Arrhythmia'],[countB,countA])
+    bars=axes[0].bar(['Normal','VEB','SVEB','F','Q'],[cntN,cntVEB,cntSVEB,cntF,cntQ])
     for bar in bars:
         yval = bar.get_height()
         axes[0].text(bar.get_x() + bar.get_width() / 2, yval, round(yval, 2), ha='center', va='bottom')
